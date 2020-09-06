@@ -1,5 +1,5 @@
 # benford-coronavirus
-Benford's Law in Coronavirus statistics. Used Covid19 data from [Covid19API](https://documenter.getpostman.com/view/10808728/SzS8rjbc)
+**Benford's Law** in **Coronavirus** statistics. Used Covid19 data from [Covid19API](https://documenter.getpostman.com/view/10808728/SzS8rjbc)
 
 Explanation:
 
@@ -55,4 +55,5 @@ And it's surprisingly close to the Benford's Law. Here is the plot of Covid19 Ca
 ![Plot](https://github.com/Clerkosh/benford-coronavirus/blob/master/CoronaVirus-TotalConfirmed-benford-law.png)
 
 I also checked the same way [Global Smallpox Cases](https://ourworldindata.org/grapher/global-smallpox-cases?year=latest) against **Benford's Law**:
-
+![Smallpox Plot](https://github.com/Clerkosh/benford-coronavirus/blob/master/smallpox-against-benford-law.png)
+... and I'd say it's also very close! What the heck?! 🤣🤪

@@ -3,7 +3,7 @@
 
 Explanation:
 
-I took number of Covid19 cases for each country:
+I took number of Covid19 cases for each country (date 2020-09-06):
 ```javascript
 ...
 Poland 70387

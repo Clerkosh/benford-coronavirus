@@ -1,9 +1,10 @@
 const https = require("https");
 const url = "https://api.covid19api.com/summary";
 const fs = require('fs')
-//var plotly = require('plotly')("clerkosh", "") //used for drawing graph
+var plotly = require('plotly')("clerkosh", "") //used for drawing graph
 
 var cases = [];
+ 
 
 https.get(url, res => {
     res.setEncoding("utf8");
@@ -14,7 +15,7 @@ https.get(url, res => {
     res.on("end", () => {
         body = JSON.parse(body);
         var bodyFile = JSON.stringify(body);
-        fs.writeFile('./summary' + body.Date.substring(0, body.Date.length - 10) + '.json', bodyFile, err => {
+        fs.writeFile('./summary-of-' + 'TotalConfirmed-' + body.Date.substring(0, body.Date.length - 10) + '.json', bodyFile, err => {
             if (err) {
                 console.log('Error writing file', err)
             } else {
@@ -59,24 +60,24 @@ https.get(url, res => {
                     break;
             }
         }
-        console.log("1: " + cnt1 + " -> " + Math.floor(cnt1 / (cnt1 + cnt2 + cnt3 + cnt4 + cnt5 + cnt6 + cnt7 + cnt8 + cnt9) * 100) + "%")
-        console.log("2: " + cnt2 + " -> " + Math.floor(cnt2 / (cnt1 + cnt2 + cnt3 + cnt4 + cnt5 + cnt6 + cnt7 + cnt8 + cnt9) * 100) + "%")
-        console.log("3: " + cnt3 + " -> " + Math.floor(cnt3 / (cnt1 + cnt2 + cnt3 + cnt4 + cnt5 + cnt6 + cnt7 + cnt8 + cnt9) * 100) + "%")
-        console.log("4: " + cnt4 + " -> " + Math.floor(cnt4 / (cnt1 + cnt2 + cnt3 + cnt4 + cnt5 + cnt6 + cnt7 + cnt8 + cnt9) * 100) + "%")
-        console.log("5: " + cnt5 + " -> " + Math.floor(cnt5 / (cnt1 + cnt2 + cnt3 + cnt4 + cnt5 + cnt6 + cnt7 + cnt8 + cnt9) * 100) + "%")
-        console.log("6: " + cnt6 + " -> " + Math.floor(cnt6 / (cnt1 + cnt2 + cnt3 + cnt4 + cnt5 + cnt6 + cnt7 + cnt8 + cnt9) * 100) + "%")
-        console.log("7: " + cnt7 + " -> " + Math.floor(cnt7 / (cnt1 + cnt2 + cnt3 + cnt4 + cnt5 + cnt6 + cnt7 + cnt8 + cnt9) * 100) + "%")
-        console.log("8: " + cnt8 + " -> " + Math.floor(cnt8 / (cnt1 + cnt2 + cnt3 + cnt4 + cnt5 + cnt6 + cnt7 + cnt8 + cnt9) * 100) + "%")
-        console.log("9: " + cnt9 + " -> " + Math.floor(cnt9 / (cnt1 + cnt2 + cnt3 + cnt4 + cnt5 + cnt6 + cnt7 + cnt8 + cnt9) * 100) + "%")
+        console.log("1: " + cnt1 + " -> " + Math.floor(cnt1 / cases.length * 100) + "%")
+        console.log("2: " + cnt2 + " -> " + Math.floor(cnt2 / cases.length * 100) + "%")
+        console.log("3: " + cnt3 + " -> " + Math.floor(cnt3 / cases.length * 100) + "%")
+        console.log("4: " + cnt4 + " -> " + Math.floor(cnt4 / cases.length * 100) + "%")
+        console.log("5: " + cnt5 + " -> " + Math.floor(cnt5 / cases.length * 100) + "%")
+        console.log("6: " + cnt6 + " -> " + Math.floor(cnt6 / cases.length * 100) + "%")
+        console.log("7: " + cnt7 + " -> " + Math.floor(cnt7 / cases.length * 100) + "%")
+        console.log("8: " + cnt8 + " -> " + Math.floor(cnt8 / cases.length * 100) + "%")
+        console.log("9: " + cnt9 + " -> " + Math.floor(cnt9 / cases.length * 100) + "%")
 
-        /* drawing graph with plotly
-        var data = [{ y: [cnt1, cnt2, cnt3, cnt4, cnt5, cnt6, cnt7, cnt8, cnt9], x: [1, 2, 3, 4, 5, 6, 7, 8, 9], type: 'line' }];
-        var layout = { fileopt: "overwrite", filename: "simple-node-example" };
+        // drawing graph with plotly
+        var data = [{name:"Covid19 Cases", y: [Math.floor(cnt1 / cases.length * 100),Math.floor(cnt2 / cases.length * 100),Math.floor(cnt3 / cases.length * 100),Math.floor(cnt4 / cases.length * 100),Math.floor(cnt5 / cases.length * 100),Math.floor(cnt6 / cases.length * 100),Math.floor(cnt7 / cases.length * 100),Math.floor(cnt8 / cases.length * 100),Math.floor(cnt9 / cases.length * 100)], x: [1,2,3,4,5,6,7,8,9], type: 'line' }, {name: "Benford's Law", y: [30,17,12,9,7,6,5,5,4], x: [1,2,3,4,5,6,7,8,9], type: 'line'}];
+        var layout = { fileopt: "overwrite", filename: "CoronaVirus-TotalConfirmed-benford-law" };
 
         plotly.plot(data, layout, function (err, msg) {
             if (err) return console.log(err);
             console.log(msg);
         });
-        */
+        
     });
 });

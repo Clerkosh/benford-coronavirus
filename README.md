@@ -53,3 +53,6 @@ Then I counted how many 1's, 2's, 3's and so on are there...
 ```
 And it's surprisingly close to the Benford's Law. Here is the plot of Covid19 Cases against Benford's Law:
 ![Plot](https://github.com/Clerkosh/benford-coronavirus/blob/master/CoronaVirus-TotalConfirmed-benford-law.png)
+
+I also checked the same way [Global Smallpox Cases](https://ourworldindata.org/grapher/global-smallpox-cases?year=latest) against **Benford's Law**:
+
